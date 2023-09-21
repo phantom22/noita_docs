@@ -1,15 +1,39 @@
+---@diagnostic disable: lowercase-global
 dofile_once( "data/scripts/lib/utilities.lua" )
 
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 CHANCE_OF_MODIFIER_PER_BIOME = 0.1
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 CHANCE_OF_MODIFIER_COALMINE = 0.2
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 CHANCE_OF_MODIFIER_EXCAVATIONSITE = 0.15
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 CHANCE_OF_MOIST_FUNGICAVE = 0.5
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 CHANCE_OF_MOIST_LAKE = 0.75
 
 -- NOTE: at the moment the modifiers aren't serialized. it is assumed the modifiers stay static throughout a single run.
 -- this script re-applies the modifiers every time the game systems are initialized (through init_biome_modifiers() and biome_modifiers_inject_spawns()).
 -- because of that the biomes shouldn't be modified outside those hooks, because the changes would be lost after the game is saved/loaded.
-
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 biomes =
 {
 	{"coalmine","mountain_hall"},
@@ -24,6 +48,11 @@ biomes =
 }
 
 rnd = nil
+---@type string[]
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
 biomes_with_modifier = {}
 
 biome_modifiers =

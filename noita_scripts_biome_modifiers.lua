@@ -1,6 +1,56 @@
 ---@diagnostic disable: missing-return, lowercase-global
 
----@param t any
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+CHANCE_OF_MODIFIER_PER_BIOME = 0.1
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+CHANCE_OF_MODIFIER_COALMINE = 0.2
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+CHANCE_OF_MODIFIER_EXCAVATIONSITE = 0.15
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+CHANCE_OF_MOIST_FUNGICAVE = 0.5
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+CHANCE_OF_MOIST_LAKE = 0.75
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+biomes =
+{
+	{"coalmine","mountain_hall"},
+	{"coalmine_alt"},
+	{"excavationsite"},
+	{"fungicave"},
+	{"snowcave"},
+	{"snowcastle"},
+	{"rainforest","rainforest_open"},
+	{"vault"},
+	{"crypt"},
+}
+
+---@type string[]
+---```lua
+--- -- must be imported
+---dofile_once("data/scripts/biome_modifiers.lua")
+---```
+biomes_with_modifier = {}
+
+---Clears a given table.
+---@param t table
 ---```lua
 --- -- must be imported
 ---dofile_once("data/scripts/biome_modifiers.lua")
