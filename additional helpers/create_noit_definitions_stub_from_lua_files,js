@@ -1,0 +1,69 @@
+let disable_diagnostics = true;
+/**
+ * @author phantom22 on github
+ * 
+ * # example usage
+ * 
+ * ```lua
+ * -- relative path is: "files/myFile.lua"
+ * function test_a(value1, value2, value3)
+ *     return value1 + value2 + value3
+ * end
+ * 
+ * function test_b(value, other_value)
+ *     return value / other_value
+ * end
+ * 
+ * function test_c()
+ *     print("wow")
+ * end
+ * ```
+ * 
+ * ```javascript
+ *  make_definistions_stub(`function test_a(value1, value2, value3)
+ *      return value1 + value2 + value3
+ *  end
+ *  
+ *  function test_b(value, other_value)
+ *      return value / other_value
+ *  end
+ *  
+ *  function test_c()
+ *      print("wow")
+ *  end`,"files/myFile.lua");
+ * 
+ * 
+ * // this will return to console:
+ * // `---@diagnostic disable: missing-return, lowercase-global
+ * // 
+ * // ---```lua
+ * // --- -- must be imported
+ * // ---dofile_once("files/myFile.lua")
+ * // ---```
+ * // function test_a(value1, value2, value3) end
+ * // 
+ * // ---```lua
+ * // --- -- must be imported
+ * // ---dofile_once("files/myFile.lua")
+ * // ---```
+ * // function test_b(value, other_value) end
+ * // 
+ * // ---```lua
+ * // --- -- must be imported
+ * // ---dofile_once("files/myFile.lua")
+ * // ---```
+ * // function test_c() end`
+ * ```
+ * @param {string} raw_file_text just a ctrl+c and ctrl+v of the contents of the desired file, insterted between two ` symbols to preserve new lines.
+ * @param {string} relative_file_path? must end with ".lua"; example: "data/scripts/lib/utilities.lua".
+ * @returns {string}
+ */
+function make_definitions_stub(raw_file_text, relative_file_path=undefined) {
+	let lines = raw_file_text.split("\n"), o = [];
+	const is_valid_file_path = typeof relative_file_path==="string"&&relative_file_path.slice(-4)===".lua"&&relative_file_path.slice(0,-4)!=="";
+	const import_reminder = is_valid_file_path ? `---\`\`\`lua\n--- -- must be imported\n---dofile_once("${relative_file_path}")\n---\`\`\`\n` : "";
+	for (let i=0; i<lines.length; i++)
+		if (lines[i].slice(0,8) === "function")
+			o.push(lines[i] + " end");
+	return (disable_diagnostics?"---@diagnostic disable: missing-return, lowercase-global\n\n":"") + import_reminder + o.join(`\n\n${import_reminder}`)
+}
