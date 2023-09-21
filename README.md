@@ -7,3 +7,5 @@ The `data` folder is a stripped copy of the original without any PNG and XML fil
 ---
 
 To enjoy the benefits of linting and prediction inside your IDE, copy the `definitions` folder and paste it inside your workspace.
+
+###### *This project is at its early stages of development and it may have some imprecisions here and there.*
